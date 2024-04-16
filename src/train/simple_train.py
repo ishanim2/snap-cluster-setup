@@ -164,7 +164,7 @@ def main() -> None:
     """
     Main function to execute the model training and evaluation.
     """
-    wandb.init(WANDB_API_KEY = '0b638395212f28a1ce99b80e9842001ead4f2185')
+    wandb.init(api_key = '0b638395212f28a1ce99b80e9842001ead4f2185')
     setup_and_train_proofnet()
 
 if __name__ == "__main__":
