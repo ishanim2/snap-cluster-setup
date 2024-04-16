@@ -6,6 +6,7 @@ from datasets import load_dataset, load_metric
 from typing import Dict, Tuple, Optional
 from pathlib import Path
 import evaluate
+import wandb
 
 from utils import eval_hf, get_ai4m_v0, get_data_set_args, load_dataset_block_size
 
@@ -128,7 +129,7 @@ def setup_and_train_proofnet(pretrained_model_name_or_path: str = "gpt2",
         logging_strategy='epoch',
         # lr_scheduler_type=lr_scheduler_type  # TODO: https://discord.com/channels/879548962464493619/1227708244697284724/1227708244697284724
         # warmup_ratio=warmup_ratio,
-        report_to = report_to,  # options I recommend: 'none', 'wandb'
+        report_to = wandb,  # options I recommend: 'none', 'wandb'
         fp16=False,  # never ever set to True
         bf16=torch.cuda.get_device_capability(torch.cuda.current_device())[0] >= 8,  # if >= 8 ==> brain float 16 available or set to True if you always want fp32
     )
@@ -163,6 +164,7 @@ def main() -> None:
     """
     Main function to execute the model training and evaluation.
     """
+    wandb.init()
     setup_and_train_proofnet()
 
 if __name__ == "__main__":
