@@ -71,7 +71,7 @@ def setup_and_train_big_model(
                             warmup_ratio=0.01,
                             evaluation_strategy='no',
                             eval_steps = None,  # TODO
-                            report_to: str = 'none',
+                            report_to: str = 'wandb',
                             block_size: int = 4096,  # TODO we need to move away from block size training to respecting sentences
                     ) -> None:
     # Clear CUDA cache to free up memory
@@ -118,7 +118,7 @@ def setup_and_train_big_model(
         remove_unused_columns=False,  # TODO don't get why https://stackoverflow.com/questions/76879872/how-to-use-huggingface-hf-trainer-train-with-custom-collate-function/76929999#76929999 , https://claude.ai/chat/475a4638-cee3-4ce0-af64-c8b8d1dc0d90
         lr_scheduler_type=lr_scheduler_type,
         warmup_ratio=warmup_ratio,
-        report_to = report_to,  # options I recommend: 'none' or 'wandb'
+        report_to = 'wandb',  # options I recommend: 'none' or 'wandb'
         fp16=False,  # never ever set to True
         bf16=torch.cuda.get_device_capability(torch.cuda.current_device())[0] >= 8,  # if >= 8 ==> brain float 16 available or set to True if you always want fp32
     )
@@ -153,6 +153,7 @@ def main() -> None:
     """
     Main function to execute the model training and evaluation.
     """
+    wandb.init()
     setup_and_train_big_model()
 
 if __name__ == "__main__":
