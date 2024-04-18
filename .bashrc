@@ -71,7 +71,7 @@ export DFS=/dfs/scratch0/brando9/
 # unset __conda_setup
 # # <<< conda initialize <<<
 # put conda in PATH env where to find executable commands (so conda coommand works)
-export PATH="$HOME/miniconda/bin:$PATH"
+# export PATH="$HOME/miniconda/bin:$PATH"
 # activates base to test things
 source $HOME/miniconda/bin/activate
 # Check if Conda is not installed. HAS TO GO AFTER EXPORT AND SOURCE CONDA PREV CMDS
