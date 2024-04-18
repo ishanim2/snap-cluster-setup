@@ -3,7 +3,7 @@ import numpy as np
 import torch
 from transformers import GPT2Tokenizer, GPT2LMHeadModel, TrainingArguments, Trainer
 import evaluate
-
+import wandb
 from datasets import load_dataset, load_metric
 from typing import Dict, Tuple, Optional
 from pathlib import Path
